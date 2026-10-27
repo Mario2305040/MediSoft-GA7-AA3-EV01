@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${titulo} + ' | MediSoft'">Cita | MediSoft</title><link rel="stylesheet" th:href="@{/assets/styles.css}"></head>
+<body><main class="container form-container">
+    <header class="page-header"><div><p class="eyebrow">MEDISOFT · GESTIÓN CLÍNICA</p><h1 th:text="${titulo}">Registrar cita</h1>
+        <p class="muted">Completa los datos del paciente y la consulta.</p></div><a class="button quiet" th:href="@{/citas}">Volver al listado</a></header>
+    <section class="panel"><form class="appointment-form" th:object="${cita}" th:action="@{${accion}}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <label for="documentoPaciente">Documento del paciente</label><input id="documentoPaciente" th:field="*{documentoPaciente}" maxlength="30" required>
+        <small class="field-error" th:errors="*{documentoPaciente}"></small>
+        <label for="nombrePaciente">Nombre del paciente</label><input id="nombrePaciente" th:field="*{nombrePaciente}" maxlength="120" required>
+        <small class="field-error" th:errors="*{nombrePaciente}"></small>
+        <label for="especialidad">Especialidad</label><input id="especialidad" th:field="*{especialidad}" maxlength="100" required>
+        <small class="field-error" th:errors="*{especialidad}"></small>
+        <label for="medico">Médico</label><input id="medico" th:field="*{medico}" maxlength="120" required>
+        <small class="field-error" th:errors="*{medico}"></small>
+        <label for="fechaHora">Fecha y hora</label><input id="fechaHora" type="datetime-local" th:field="*{fechaHora}" required>
+        <small class="field-error" th:errors="*{fechaHora}"></small>
+        <label for="estado">Estado</label><select id="estado" th:field="*{estado}" required>
+            <option value="PROGRAMADA">Programada</option><option value="ATENDIDA">Atendida</option><option value="CANCELADA">Cancelada</option></select>
+        <small class="field-error" th:errors="*{estado}"></small>
+        <div class="form-actions"><button class="button primary" type="submit">Guardar cita</button><a class="button quiet" th:href="@{/citas}">Cancelar</a></div>
+    </form></section><footer>MediSoft · Atención organizada, cuidado cercano.</footer>
+</main></body></html>

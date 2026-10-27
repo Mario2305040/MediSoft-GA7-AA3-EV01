@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Citas | MediSoft</title>
+    <link rel="stylesheet" th:href="@{/assets/styles.css}">
+</head>
+<body>
+<main class="container">
+    <header class="page-header">
+        <div><p class="eyebrow">MEDISOFT · GESTIÓN CLÍNICA</p><h1>Citas médicas</h1>
+            <p class="muted">Administra las citas programadas de tus pacientes.</p></div>
+        <a class="button primary" th:href="@{/citas/nueva}">Registrar cita</a>
+    </header>
+    <div class="notice success" th:if="${mensaje}" th:text="${mensaje}"></div>
+    <section class="panel search-panel" aria-labelledby="search-title">
+        <div><h2 id="search-title">Consultar por ID</h2><p class="muted">La búsqueda se envía mediante GET.</p></div>
+        <form th:action="@{/citas}" method="get" class="search-form">
+            <label for="id">ID de la cita</label><input id="id" name="id" type="number" min="1" required>
+            <button class="button secondary" type="submit">Buscar</button>
+            <a class="button quiet" th:href="@{/citas}">Ver todas</a>
+        </form>
+    </section>
+    <section class="panel" aria-labelledby="list-title">
+        <div class="section-heading"><div><h2 id="list-title">Listado de citas</h2>
+            <p class="muted">Consulta, edita o elimina un registro.</p></div>
+            <span class="count"><span th:text="${#lists.size(citas)}">0</span> registros</span></div>
+        <div class="empty-state" th:if="${#lists.isEmpty(citas)}">No hay citas para mostrar. Registra una cita para comenzar.</div>
+        <div class="table-wrap" th:unless="${#lists.isEmpty(citas)}"><table>
+            <thead><tr><th>ID</th><th>Paciente</th><th>Especialidad</th><th>Médico</th><th>Fecha y hora</th><th>Estado</th><th>Acciones</th></tr></thead>
+            <tbody><tr th:each="cita : ${citas}">
+                <td><strong th:text="${cita.id}">1</strong></td>
+                <td><span th:text="${cita.nombrePaciente}">Paciente</span><small th:text="${cita.documentoPaciente}">Documento</small></td>
+                <td th:text="${cita.especialidad}">Especialidad</td><td th:text="${cita.medico}">Médico</td>
+                <td th:text="${#temporals.format(cita.fechaHora, 'yyyy-MM-dd HH:mm')}">Fecha</td>
+                <td><span class="status" th:text="${cita.estado}">PROGRAMADA</span></td>
+                <td class="actions"><a class="button small secondary" th:href="@{/citas/{id}/editar(id=${cita.id})}">Editar</a>
+                    <form th:action="@{/citas/{id}/eliminar(id=${cita.id})}" method="post" onsubmit="return confirm('¿Eliminar esta cita?');">
+                        <button class="button small danger" type="submit">Eliminar</button></form></td>
+            </tr></tbody>
+        </table></div>
+    </section>
+    <footer>MediSoft · Atención organizada, cuidado cercano.</footer>
+</main>
+</body>
+</html>
