@@ -1,5 +1,3 @@
-Repositorio remoto de la evidencia GA7-220501096-AA3-EV01
+﻿Repositorio remoto de la evidencia GA7-220501096-AA3-EV01
 
-URL: Pendiente de crear/publicar en GitHub o GitLab por el aprendiz.
-El proyecto ya incluye el repositorio Git local con su commit inicial.
-Cuando se publique, reemplazar esta línea con la URL HTTPS del repositorio remoto.
+URL: https://github.com/Mario2305040/MediSoft-GA7-AA3-EV01
