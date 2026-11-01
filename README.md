@@ -20,7 +20,7 @@ Módulo web para gestionar citas médicas. Se seleccionó el canal web de MediSo
 
 ## 1. Preparar la base de datos
 
-En MySQL Workbench, abre y ejecuta `database/schema.sql` con una cuenta administradora. El script crea el esquema independiente `medisoft_aa3` y la tabla `citas`. Luego crea el usuario de aplicación siguiendo los comentarios del mismo script y reemplaza `CAMBIAR_POR_CLAVE_LOCAL` por una clave propia. No guardes la clave en Git.
+En MySQL Workbench, abre y ejecuta `database/schema.sql` con una cuenta administradora. El script crea el esquema independiente `medisoft_aa3` y la tabla `citas`. Luego crea el usuario de aplicación siguiendo los comentarios del mismo script y reemplaza `CAMBIAR_POR_CLAVE_LOCAL` por una clave propia Ej: `MediSoft_AA3_Web_2026_K7x!`.
 
 ## 2. Configurar la conexión en PowerShell
 
@@ -29,7 +29,7 @@ Abre PowerShell y establece las variables en la misma ventana en la que iniciar�
 ```powershell
 $env:MEDISOFT_AA3_DB_URL = 'jdbc:mysql://localhost:3306/medisoft_aa3?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8'
 $env:MEDISOFT_AA3_DB_USER = 'medisoft_aa3_app'
-$env:MEDISOFT_AA3_DB_PASSWORD = 'TU_CLAVE_LOCAL'
+$env:MEDISOFT_AA3_DB_PASSWORD = 'MediSoft_AA3_Web_2026_K7x!'
 ```
 
 ## 3. Ejecutar el módulo
